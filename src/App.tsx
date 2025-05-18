@@ -81,12 +81,16 @@ const MenuButton = styled.button`
   font-weight: bold;
   
   @media (max-width: 768px) {
-    display: block;
-    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    background-color: rgba(74, 111, 165, 0.6);
+    top: 0;
+    right: 0;
+    margin: 0.7rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: rgba(74, 111, 165, 0.8);
     border-radius: 4px;
   }
 `;
