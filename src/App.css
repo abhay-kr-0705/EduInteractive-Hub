@@ -1,5 +1,27 @@
+/* Custom styles for Flashcard application */
 .App {
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Animation for card flip */
+@keyframes flipIn {
+  from {
+    transform: rotateY(90deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes flipOut {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(90deg);
+  }
 }
 
 .App-logo {
