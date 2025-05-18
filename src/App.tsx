@@ -73,21 +73,25 @@ const MenuButton = styled.button`
   background: none;
   border: none;
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
   padding: 0.5rem;
+  margin: 0.5rem;
+  z-index: 10;
+  font-weight: bold;
   
   @media (max-width: 768px) {
     display: block;
-    align-self: flex-end;
+    align-self: center;
     position: absolute;
-    top: 1rem;
+    top: 0.5rem;
     right: 1rem;
+    background-color: rgba(74, 111, 165, 0.6);
+    border-radius: 4px;
   }
 `;
 
-const Content = styled.main`
-  flex: 1;
+const Content = styled.main`  flex: 1;
   padding: 2rem;
   display: flex;
   justify-content: center;
@@ -146,3 +150,4 @@ function App() {
 }
 
 export default App;
+
