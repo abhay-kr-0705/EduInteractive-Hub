@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import './App.css';
@@ -36,6 +36,12 @@ const Nav = styled.nav`
   padding: 1rem;
   background-color: #6889b1;
   flex-wrap: wrap;
+  position: relative;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
   
   a {
     color: white;
@@ -49,6 +55,37 @@ const Nav = styled.nav`
   }
 `;
 
+const NavLinks = styled.div<{ isOpen: boolean }>`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  @media (max-width: 768px) {
+    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+`;
+
+const MenuButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  
+  @media (max-width: 768px) {
+    display: block;
+    align-self: flex-end;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+`;
+
 const Content = styled.main`
   flex: 1;
   padding: 2rem;
@@ -58,6 +95,12 @@ const Content = styled.main`
 `;
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <Router>
       <AppContainer>
@@ -65,17 +108,22 @@ function App() {
           <h1>EduInteractive Hub</h1>
         </Header>
         <Nav>
-          <Link to="/">Home</Link>
-          <Link to="/flashcards">Flashcards</Link>
-          <Link to="/quiz">Quiz</Link>
-          <Link to="/habits">Habit Tracker</Link>
-          <Link to="/courses">Course Catalog</Link>
-          <Link to="/reading-log">Reading Log</Link>
-          <Link to="/markdown">Markdown Editor</Link>
-          <Link to="/adaptive-quiz">Adaptive Quiz</Link>
-          <Link to="/video-player">Video Player</Link>
-          <Link to="/lesson-tracker">Lesson Tracker</Link>
-          <Link to="/spaced-repetition">Spaced Repetition</Link>
+          <MenuButton onClick={toggleMenu}>
+            {isMenuOpen ? '✕' : '☰'}
+          </MenuButton>
+          <NavLinks isOpen={isMenuOpen}>
+            <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+            <Link to="/flashcards" onClick={() => setIsMenuOpen(false)}>Flashcards</Link>
+            <Link to="/quiz" onClick={() => setIsMenuOpen(false)}>Quiz</Link>
+            <Link to="/habits" onClick={() => setIsMenuOpen(false)}>Habit Tracker</Link>
+            <Link to="/courses" onClick={() => setIsMenuOpen(false)}>Course Catalog</Link>
+            <Link to="/reading-log" onClick={() => setIsMenuOpen(false)}>Reading Log</Link>
+            <Link to="/markdown" onClick={() => setIsMenuOpen(false)}>Markdown Editor</Link>
+            <Link to="/adaptive-quiz" onClick={() => setIsMenuOpen(false)}>Adaptive Quiz</Link>
+            <Link to="/video-player" onClick={() => setIsMenuOpen(false)}>Video Player</Link>
+            <Link to="/lesson-tracker" onClick={() => setIsMenuOpen(false)}>Lesson Tracker</Link>
+            <Link to="/spaced-repetition" onClick={() => setIsMenuOpen(false)}>Spaced Repetition</Link>
+          </NavLinks>
         </Nav>
         <Content>
           <Routes>
